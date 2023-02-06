@@ -1,13 +1,26 @@
-import 'dotenv/config';
-import { client } from '../src/services/redis';
+import 'dotenv/config'
+import { client } from '../src/services/redis'
 
 const run = async () => {
 	await client.hSet('car', {
-		color: 'red',
+		color: 'Red',
 		year: 1950,
-		engine: { cylinders: 8 },
+		engine: {
+			cylinders: 8
+		},
 		owner: '',
 		service: ''
-	});
-};
-run();
+	})
+
+	const car = await client.hGetAll('car')
+	const noCar = await client.hGetAll('noCar')
+
+	if (car) {
+		console.log('car', car)
+	}
+
+	if (Object.keys(noCar).length === 0) {
+		console.log('noCar', noCar)
+	}
+}
+run()
