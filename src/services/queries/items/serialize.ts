@@ -1,10 +1,10 @@
 import type { CreateItemAttrs } from '$services/types'
 
 export const serialize = (attrs: CreateItemAttrs) => {
+	console.log(attrs)
 	return {
 		...attrs,
 		createdAt: attrs.createdAt.toMillis(),
-		updatedAt: attrs.endingAt.toMillis(),
-    endingAt
+		endingAt: attrs.endingAt.toMillis()
 	}
 }
